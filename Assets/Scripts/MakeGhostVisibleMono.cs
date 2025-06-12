@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.Port;
 
 public class MakeGhostVisibleMono : MonoBehaviour
 {
@@ -11,8 +10,9 @@ public class MakeGhostVisibleMono : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        GhostData.reveal.AddListener(ChangeSpriteOpacity);
-        GhostData.leftLightEvent.AddListener(NoLongerUnderLight);
+        GhostData.revealEvent.AddListener(ChangeSpriteOpacity);
+        GhostData.underLightEvent.AddListener(SetUnderLight);
+        GhostData.caughtEvent.AddListener(CaughtColorChange);
     }
 
     private void Update()
@@ -21,26 +21,30 @@ public class MakeGhostVisibleMono : MonoBehaviour
         {
             GhostData.RevealSignal(-.05f);
         }
+
+
     }
 
-    private void NoLongerUnderLight()
+    private void SetUnderLight(bool lightStatus)
     {
-        underLight = false;
+        underLight = lightStatus;
     }
+
 
 
     private void ChangeSpriteOpacity(float opacity)
     {
-        if(opacity > 0f)
-        {
-            underLight = true;
-        }
 
         Mathf.Clamp01(opacity);
         Color color = Color.white;
         color.a = opacity;
         spriteRenderer.color = color;
 
+    }
+
+    private void CaughtColorChange()
+    {
+        ChangeSpriteOpacity(-999f);
     }
 
 }

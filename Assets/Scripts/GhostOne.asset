@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: GhostOne
   m_EditorClassIdentifier: 
   InvincibilityTimer: 0
+  TimeToRespawn: 3
+  GhostLaugh: {fileID: 8300000, guid: 9623ee0439eb7df41aaeab01014dfad2, type: 3}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0506333a88c134e88f400b24439f00, type: 3}
+  m_Name: GameData
+  m_EditorClassIdentifier: 
+  CandleDataOne: {fileID: 11400000, guid: 18a7d148c99776748b797b8661ad8d43, type: 2}
+  CandleDataTwo: {fileID: 11400000, guid: 506130de1e8f9104cb399b6c45e93f31, type: 2}
+  CandleDataThree: {fileID: 11400000, guid: eaa86161a0f5d3d4bb67f36bd8dce6e6, type: 2}
+  CandleDataFour: {fileID: 11400000, guid: 85ed149af69805044be9cc781daaa0a9, type: 2}
+  GhostData: {fileID: 11400000, guid: 568a44a9e04898c409d753378ee10037, type: 2}

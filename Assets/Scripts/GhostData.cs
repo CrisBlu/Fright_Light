@@ -5,39 +5,45 @@ using UnityEngine.Events;
 public class GhostData : ScriptableObject
 {
 
-    [SerializeField] private float InvincibilityTimer;
+    [SerializeField] public float InvincibilityTimer;
+    [SerializeField] public float TimeToRespawn;
+    [SerializeField] public AudioClip GhostLaugh;
     private float visibilityValue = 0;
 
-    [System.NonSerialized] public UnityEvent<float> reveal;
-    [System.NonSerialized] public UnityEvent caught;
-    [System.NonSerialized] public UnityEvent leftLightEvent;
+    [System.NonSerialized] public UnityEvent<float> revealEvent;
+    [System.NonSerialized] public UnityEvent caughtEvent;
+    [System.NonSerialized] public UnityEvent<bool> underLightEvent;
 
     private void OnEnable()
     {
         visibilityValue = 0;
 
-        reveal = new UnityEvent<float>();
-        caught = new UnityEvent();
-        leftLightEvent = new UnityEvent();
+        revealEvent = new UnityEvent<float>();
+        caughtEvent = new UnityEvent();
+        underLightEvent = new UnityEvent<bool>();
     }
 
 
     public void RevealSignal(float power)
     {
+
         visibilityValue += power;
-        Mathf.Clamp01(visibilityValue);
-        
-        reveal.Invoke(visibilityValue);
+
+        visibilityValue = Mathf.Clamp01(visibilityValue);
+
+
+        revealEvent.Invoke(visibilityValue);
     }
 
-    public void LeftLight()
+    public void SetLightSignal(bool status)
     {
-        leftLightEvent.Invoke();
+        underLightEvent.Invoke(status);
     }
 
     public void CaughtSignal()
     {
-        caught.Invoke();
+        caughtEvent.Invoke();
+        visibilityValue = 0;
     }
 
 }
